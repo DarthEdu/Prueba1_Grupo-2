@@ -1,0 +1,88 @@
+body{
+    background-color: beige;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.place-logo{
+    height: 70px;
+    background-color: aquamarine;
+    width: 100%;
+    border-radius: 0px;
+    margin-bottom: 80px;
+}
+
+.logos-university{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.logo{
+    width: 120px;
+    height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    justify-content: center;
+    text-align: center;
+    background-color: #c2ccce;
+    padding: 50px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+button {
+    height: 50px;
+    padding: 10px 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    border: none;
+    border-radius: 20px;
+    background-color: #fffdfd;
+    margin: 10px 0;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+footer {
+        width: 100%;
+        background-color: aquamarine;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+ }
+
+
+
+@media (max-width: 768px) {
+
+    .logos-university{
+        justify-content: center;
+        gap: 50px;
+    }
+    
+    
+}

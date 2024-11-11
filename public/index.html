@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoClim</title>
+    <link rel="icon" type="image/png" href="imagenes/ecoclim.png">
+    <link rel="stylesheet" href="estilos/estilos.css" />
+  </head>
+  <body>
+    <div>
+      <nav class="place-logo">
+        <ul class="logos-university">
+          <li>
+            <img class="logo" src="./imagenes/logo_esfot.png" alt="" />
+          </li>
+          <li class="logo-two">
+            <img class="logo" src="./imagenes/Logo_EPN.png" alt="" />
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <h1>LOGIN</h1>
+      <br />
+      <button
+        onclick="enrollNewUser()"
+        title="Enroll a new user on this FACEIO application"
+      >
+        Registrarse
+      </button>
+      <button
+        onclick="authenticateUser()"
+        title="Authenticate a previously enrolled user on this application"
+      >
+      <pre id="result"></pre>
+        Autentificar
+      </button>
+    </div>
+    <footer>
+      <p>
+        &copy; 2024 Escuela Politécnica Nacional - Todos los derechos reservados
+      </p>
+    </footer>
+    <div id="faceio-modal"></div>
+    <script src="https://cdn.faceio.net/fio.js"></script>
+    <script>
+        const faceio = new faceIO("fioa4214");
+  
+        function enrollNewUser() {
+          faceio
+            .enroll()
+            .then((userInfo) => {
+              console.log("Usuario registrado exitosamente:", userInfo);
+              document.getElementById("result").textContent = JSON.stringify(
+                alert("Usuario registrado exitosamente")
+              );
+            })
+            .catch((errCode) => {
+              console.error("Error en el registro:", errCode);
+              //document.getElementById("result").textContent =
+                alert("Error en el registro");
+            });
+        }
+  
+        function authenticateUser() {
+          faceio
+            .authenticate()
+            .then((userInfo) => {
+              console.log("Usuario autenticado exitosamente:", userInfo);
+              document.getElementById("result").textContent = JSON.stringify(
+                alert("Usuario autenticado exitosamente")
+              );
+            })
+            .catch((errCode) => {
+              console.error("Error en la autenticación:", errCode);
+              //document.getElementById("result").textContent =
+                alert("Error en la autenticación");
+
+
+            });
+        }
+      </script>
+  </body>
+</html>

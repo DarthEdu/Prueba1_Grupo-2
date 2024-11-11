@@ -1,11 +1,8 @@
 {
-  "name": "prueba1_gr2",
+  "name": "faceio",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "fio.js",
   "scripts": {
-    "start": "node src/index.js",
-    "bdd": "json-server --watch db.json --port 4000",
-    "dev": "node --watch src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,9 +10,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "express": "^4.21.1",
-    "json-server": "^1.0.0-beta.3",
-    "uuid": "^11.0.1"
+    "express": "^4.21.1"
   }
 }
