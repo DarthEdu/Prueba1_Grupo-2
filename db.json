@@ -1,0 +1,24 @@
+{
+    "estudiantes":[
+        {
+            "nombre":"Dennis Diaz",
+            "edad": 21,
+            "universidad":"EPN",
+            "vehiculo":true
+        }
+    ],
+    "docentes": [
+        {
+            "nombre":"Juan Pablo",
+            "edad": 49,
+            "titulo":"Ingenieria",
+            "vehiculo":true
+        },
+        {
+            "nombre":"Lorena Chulde",
+            "edad": 49,
+            "titulo":"Ingenieria",
+            "vehiculo":false
+        }
+    ]
+}
