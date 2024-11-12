@@ -27,4 +27,17 @@ const controladorFACE = async (req, res)=>{
         res.status(404)
     }
 }
-export {ControladorPagina, controladorInicio, controladorFACE}
+
+const controladorTLE = async (req, res)=>{
+    try{
+        const paginaTLE = await api.paginaTLE()
+        res.status(200).sendFile(paginaTLE)
+    }catch(error){
+        console.log("Error en cargar la pagina", error)
+        res.status(404)
+    }
+}
+
+
+
+export {ControladorPagina, controladorInicio, controladorFACE, controladorTLE}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/estilos/EstilosTLE.css">
+  <link rel="icon" href="/imagen/ecoclim.png" type="image/png">
+  <title>Consulta TLE</title>
+</head>
+
+<body>
+  <nav class="head" id="headerPrincipal ">
+    <ul class="logos-university">
+      <li><img src="/imagen/logo_esfot.png" alt="ESFOT Logo"></li>
+      <li><img src="/imagen/Logo_EPN.png" alt="EPN Logo"></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>Buscar Satélite</h1>
+    <button id="buscarTodo" class="button">Obtener todos los TLE Model</button>
+    <input type="text" id="satelliteId" placeholder="Ingrese ID Satelite" class="input-text">
+    <button id="buscarId" class="button">Buscar ID</button>
+  </div>
+  <div class="tabla">
+    <div id="resultado" class="result-box"></div>
+  </div>
+
+  <script>
+    document.getElementById('buscarTodo').addEventListener('click', function () {
+      fetch('https://tle.ivanstanojevic.me/api/tle?search=*&sort=name&sort-dir=asc&page=1&page-size=20')
+        .then(response => response.json())
+        .then(data => {
+          displayTable(data.member);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('resultado').textContent = 'Error al obtener los datos';
+        });
+    });
+    document.getElementById('buscarId').addEventListener('click', function () {
+      const satelliteId = document.getElementById('satelliteId').value;
+
+      fetch(`https://tle.ivanstanojevic.me/api/tle/${satelliteId}`)
+        .then(response => response.json())
+        .then(data => {
+          displayTable([data]);
+        })
+        .catch(error => {
+          alert("ERROR")
+          console.error('Error:', error);
+          document.getElementById('resultado').textContent = 'Error al obtener los datos';
+        });
+    });
+    function displayTable(data) {
+      if (data.length === 0) {
+        document.getElementById('resultado').textContent = 'No se encontraron resultados.';
+        return;
+      }
+
+      let table = `<table><thead><tr><th>ID</th><th>Nombre</th><th>Linea 1</th><th>Linea 2</th><th>Fecha</th></tr></thead><tbody>`;
+
+      data.forEach(item => {
+        table += `
+        <tr>
+          <td>${item.satelliteId}</td>
+          <td>${item.name}</td>
+          <td>${item.line1}</td>
+          <td>${item.line2}</td>
+          <td>${item.date}</td>
+        </tr>
+      `;
+      });
+
+      table += `</tbody></table>`;
+
+      document.getElementById('resultado').innerHTML = table;
+    }
+  </script>
+</body>
+
+</html>

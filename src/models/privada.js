@@ -16,6 +16,10 @@ const api={
     async paginaFACE(){
         const faceIO = (path.join(__dirname, '..', '..', 'public','index.html'))
         return faceIO
+    },
+    async paginaTLE(){
+        const TLEapi = (path.join(__dirname, '..', '..', 'public','PaginaSatelite.html'))
+        return TLEapi
     }
 }
 export default api

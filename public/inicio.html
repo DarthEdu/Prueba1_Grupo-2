@@ -44,7 +44,7 @@
                     mapas topográficos, datos de cobertura terrestre, cambios ambientales y otros factores relevantes para el 
                     análisis geoespacial.
                 </p>
-                <button type="button" class="btn btn-primary"><i class="fa-solid fa-globe fa-2xl" style="color: #ffffff;"></i> Visitar Proyecto</button>
+                <button type="button" class="btn btn-primary" onclick="irAPaginaTLE()"><i class="fa-solid fa-globe fa-2xl" style="color: #ffffff;"></i> Visitar Proyecto</button>
             </div>
         </div>
     </section>
@@ -132,7 +132,16 @@
             listaURL= urlActual.split('/')
             listaURL.pop()
             let urlNueva= listaURL.join('/')
-            urlNueva += '/api/datos-metereologicos'
+            urlNueva += '/api/datos-meteorologicos'
+            window.location.href = urlNueva
+        }
+        function irAPaginaTLE(){
+            const urlActual = window.location.href
+            let listaURL = []
+            listaURL= urlActual.split('/')
+            listaURL.pop()
+            let urlNueva= listaURL.join('/')
+            urlNueva += '/api/tle'
             window.location.href = urlNueva
         }
     </script>
