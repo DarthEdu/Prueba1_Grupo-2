@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoClim</title>
+  <link rel="icon" type="image/png" href="imagenes/ecoclim.png">
+  <link rel="stylesheet" href="/estilos/estilos.css" />
+  <link rel="icon" href="/imagen/ecoclim.png" type="image/png">
+</head>
+
+<body>
+  <div>
+    <nav class="place-logo">
+      <ul class="logos-university">
+        <li>
+          <img class="logo" src="/imagen/logo_esfot.png" alt="" />
+        </li>
+        <li class="logo-two">
+          <img class="logo" src="/imagen/Logo_EPN.png" alt="" />
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4 elLogin">
+        <h1>LOGIN</h1>
+        <br>
+        <button onclick="enrollNewUser()" title="Enroll a new user on this FACEIO application" class="registro">
+          Registrarse
+        </button>
+        <button onclick="authenticateUser()" title="Authenticate a previously enrolled user on this application"
+          class="autenticador">
+          <pre id="result"></pre>
+          Autentificar
+        </button>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>
+      &copy; 2024 Escuela Politécnica Nacional - Todos los derechos reservados
+    </p>
+  </footer>
+  <div id="faceio-modal"></div>
+  <script src="https://cdn.faceio.net/fio.js"></script>
+  <script>
+    const faceio = new faceIO("fioa4214");
+
+    function enrollNewUser() {
+      faceio
+        .enroll()
+        .then((userInfo) => {
+          console.log("Usuario registrado exitosamente:", userInfo);
+          document.getElementById("result").textContent = JSON.stringify(
+          );
+        })
+        .catch((errCode) => {
+          console.error("Error en el registro:", errCode);
+          //document.getElementById("result").textContent =
+        });
+    }
+
+    function authenticateUser() {
+      let estado
+      faceio
+        .authenticate()
+        .then((userInfo) => {
+          console.log("Usuario autenticado exitosamente:", userInfo);
+          document.getElementById("result").textContent = JSON.stringify();
+          estado = true
+          const urlActual = window.location.href
+          let listaURL = []
+          listaURL = urlActual.split('/')
+          listaURL.pop()
+          let urlNueva = listaURL.join('/')
+          urlNueva += '/menu'
+          window.location.href = urlNueva
+        })
+        .catch((errCode) => {
+          console.error("Error en la autenticación:", errCode);
+          //document.getElementById("result").textContent =
+          alert("Error en la autenticación");
+          estado = false
+        });
+    }
+  </script>
+</body>
+</html>

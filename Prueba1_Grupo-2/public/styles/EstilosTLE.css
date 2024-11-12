@@ -1,0 +1,155 @@
+/* styles.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    justify-items: center;
+    background-color: #4fd7e7;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%; /* Limitar el ancho para una mejor visualización */
+    text-align: center;
+    background-color: #4fd7e7;
+    position: relative;
+    margin-top: 20px;
+}
+
+.head {
+    background-color: #86e7a1;
+    height: 90px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logos-university {
+    display: flex;
+    list-style: none;
+    margin-left: 200px;
+    margin-right: 200px;
+    max-width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head img {
+    height: 80px;
+}
+
+.head h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+
+.input-text {
+    width: 50%;
+    font-size: 20px;
+    padding: 20px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.button {
+    padding: 20px 25px;
+    background-color: #a9e7fc;
+    font-size: 20px;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #00bfea;
+}
+
+.result-box {
+    width: 100%;
+    max-width: 90%; /* Limitar el ancho */
+    background-color: #e0e0e0;
+    padding: 15px;
+    margin: 20px auto;
+    justify-items: center;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 19px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    height: auto;
+}
+
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+    border: 3px solid #ddd;
+}
+
+th {
+    background-color: #86e7a1;
+    font-weight: bold;
+}
+
+@media (max-width: 100%) {
+    .head {
+        height: 60px; /* Tamaño ajustado del header */
+    }
+    .head img {
+        height: 40px;
+    }
+
+    .head h1 {
+        font-size: 18px;
+    }
+    .logos-university {
+        flex-direction: column; /* Apilar los elementos */
+        margin: 0; /* Reducir márgenes laterales */
+        max-width: 100%;
+    }
+    .button {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .input-text {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .result-box {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+.container, .result-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

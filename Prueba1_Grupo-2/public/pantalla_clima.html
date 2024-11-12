@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Climatica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/estilos/style.css">
+    <link rel="icon" href="/imagen/ecoclim.png" type="image/png">
+</head>
+<body>
+    <section>
+        <nav class="place-logo">
+            <ul class="logos-university">
+                <li>
+                    <img class="logo" src="/imagen/logo_esfot.png" alt="Esfot">
+                </li>
+                <li class="logo-two">
+                    <img class="logo" src="/imagen/Logo_EPN.png" alt="EPN">
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <div class="place-busqueda">
+            <h2 class="title-app">Conoce el clima</h2>
+            <form class="barra" action="">
+                <input class="form-control me-2" type="search" placeholder="Ingresa una ciudad" aria-label="Search"
+                    id="ciudad">
+                <button class="buton-barra" type="button" onclick="enviarDato()">Buscar</button>
+            </form>
+        </div>
+    </section>
+    <section>
+        <div class="place-dates">
+            <div class="imagen-clima">
+                <h2 id="idCiudad"></h2><hr>
+                <h3 id="clima"></h3>
+                <img class="logo-clima" alt="Clima" id="imagenDeClima" />
+            </div>
+            <div class="temperature">
+                <h4><i class="fa-solid fa-temperature-high fa-xl" style="color: #000000;"></i> Temperatura</h4>
+                <div class="value-img">
+                    <p class="valor" id="temperatura"> C° </p>
+                </div>
+            </div>
+            <div class="humedad">
+                <h4><i class="fa-solid fa-droplet fa-xl"></i> Humedad</h4>
+                <div class="value-img">
+                    <p class="valor" id="humedad"> %</p>
+                </div>
+            </div>
+            <div class="viento">
+                <h4><i class="fa-solid fa-wind fa-xl"></i> Viento</h4>
+                <div class="value-img">
+                    <p class="valor" id="viento"> m/s </p>
+                </div>
+            </div>
+            <div class="pressure">
+                <h4><i class="fa-solid fa-cloud fa-xl"></i> Presión atmosférica</h4>
+                <div class="value-img">
+                    <p class="valor" id="presion">-hPa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Función asíncrona para realizar fetch y almacenar datos en una variable JSON
+        async function obtenerDatos() {
+            try {
+                const respuesta = await fetch('https://api.openweathermap.org/data/2.5/weather?q=quito&appid=0ee0cbce1fa704d2b15d0d63e9b219e6');
+                const datos = await respuesta.json();
+                return datos;
+            } catch (error) {
+                console.error('Hubo un problema con la solicitud:', error);
+            }
+        }
+        function enviarDato() {
+            const ciudadNueva = document.getElementById('ciudad').value
+            const valorCiudad = ciudadNueva
+            let direccion = `https://api.openweathermap.org/data/2.5/weather?q=${valorCiudad}&appid=0ee0cbce1fa704d2b15d0d63e9b219e6`
+            async function obtenerDatosBuscar() {
+                try {
+                    const respuesta = await fetch(direccion);
+
+                    const datosNuevos = await respuesta.json();
+
+                    return datosNuevos;
+                } catch (error) {
+                    console.error('Hubo un problema con la solicitud:', error);
+                }
+            }
+            obtenerDatosBuscar().then(datos => {
+                const conversorBuscar = datos.main.temp
+                const realBuscar = conversorBuscar - 273.15
+                const aprox = realBuscar.toFixed(2)
+                traductor = datos.weather[0].main
+                if (traductor == 'Rain') {
+                    traductor = 'Lluvia'
+                } else if (traductor == 'Mist' || traductor == 'Haze') {
+                    traductor = 'Neblina'
+                } else if (traductor == 'Clear') {
+                    traductor = 'Despejado'
+                } else if (traductor == 'Sun' || traductor == 'Sunny') {
+                    traductor = 'Soleado'
+                } else if (traductor == 'Clouds') {
+                    traductor = 'Nublado'
+                }
+                clima.textContent = `${traductor}`
+                tempe.textContent = `${aprox}°C`
+                humedad.textContent = `${datos.main.humidity}%`
+                viento.textContent = `${datos.wind.speed} m/s`
+                nombre.textContent = `${datos.name}`
+                presion.textContent = `${datos.main.pressure} -hPa`
+                imagenDeClima.src = `/imagen/${datos.weather[0].main}.png`
+            });
+        }
+
+        document.getElementById('ciudad').addEventListener('keypress', function(event){
+            if(event.key==='Enter'){
+                event.preventDefault()
+                enviarDato()
+            }
+        })
+        const clima = document.getElementById('clima')
+        const tempe = document.getElementById('temperatura')
+        const humedad = document.getElementById('humedad')
+        const viento = document.getElementById('viento')
+        const nombre = document.getElementById('idCiudad')
+        const presion = document.getElementById('presion')
+        const imagenDeClima = document.getElementById('imagenDeClima')
+        let traductor
+
+
+        // Llama a la función para obtener los datos
+        obtenerDatos().then(datosS => {
+            const conversor = datosS.main.temp
+            const real = conversor - 273.15
+            const aprox = real.toFixed(2)
+            traductor = datosS.weather[0].main
+            if (traductor == 'Rain') {
+                traductor = 'Lluvia'
+            } else if (traductor == 'Mist' || traductor == 'Haze') {
+                traductor = 'Neblina'
+            } else if (traductor == 'Clear') {
+                traductor = 'Despejado'
+            } else if (traductor == 'Sun' || traductor == 'Sunny') {
+                traductor = 'Soleado'
+            } else if (traductor == 'Clouds') {
+                traductor = 'Nublado'
+            }
+            clima.textContent = `${traductor}`
+            tempe.textContent = `${aprox}°C`
+            humedad.textContent = `${datosS.main.humidity}%`
+            viento.textContent = `${datosS.wind.speed} m/s`
+            nombre.textContent = `Quito`
+            presion.textContent = `${datosS.main.pressure} -hPa`
+            imagenDeClima.src = `/imagen/${datosS.weather[0].main}.png`
+        });
+    </script>
+</body>
+<footer>
+    <p class="copyright">Copyright © 2024 ESFOT, GRUPO-2 • Todos los derechos reservados.</p>
+</footer>
+
+</html>
