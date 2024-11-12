@@ -17,4 +17,14 @@ const controladorInicio = async (req, res)=>{
         res.status(404)
     }
 }
-export {ControladorPagina, controladorInicio}
+
+const controladorFACE = async (req, res)=>{
+    try{
+        const paginaFaceIO = await api.paginaFACE()
+        res.status(200).sendFile(paginaFaceIO)
+    }catch(error){
+        console.log("Error en cargar la pagina", error)
+        res.status(404)
+    }
+}
+export {ControladorPagina, controladorInicio, controladorFACE}

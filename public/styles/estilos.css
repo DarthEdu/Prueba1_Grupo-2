@@ -1,0 +1,95 @@
+body {
+    background-color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.place-logo {
+    height: 70px;
+    background-color: aquamarine;
+    width: 100%;
+    border-radius: 0px;
+    margin-bottom: 80px;
+}
+
+.logos-university {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.logo {
+    width: 120px;
+    height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    justify-content: center;
+    text-align: center;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.autenticador, .registro {
+    height: 50px;
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #c2ccce;;
+    border-radius: 20px;
+    background-color: #fffdfd;
+    margin: 10px 0;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.autenticador:hover, .registro:hover{
+    background-color: #c2ccce;
+    color: white
+}
+
+footer {
+    width: 100%;
+    background-color: aquamarine;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+}
+
+.elLogin{
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 1px 1px 15px 5px #c2ccce;
+}
+
+
+@media (max-width: 768px) {
+
+    .logos-university {
+        justify-content: center;
+        gap: 50px;
+    }
+
+
+}

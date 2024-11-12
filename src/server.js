@@ -4,6 +4,7 @@ import {enrutador} from './routers/routerImagenes.js';
 import { enrutadorParticipantes } from './routers/routerImagenes.js';
 import rootEstilos from './routers/routerEstilos.js';
 import { controladorInicio } from './controllers/controladorPrivada.js';
+import { controladorFACE } from './controllers/controladorPrivada.js';
 const app = express()
 app.set('port', process.env.port || 3000)
 app.get('/', (req, res)=>{
@@ -14,5 +15,6 @@ app.use('/api', route)
 app.use('/imagen', enrutador)
 app.use('/imagenes', enrutadorParticipantes)
 app.use('/estilos', rootEstilos)
+app.use('/login', controladorFACE)
 //Exportar la variable app
 export default app
